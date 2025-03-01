@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Set working directory
-WORKDIR /app
+WORKDIR /data
 
 # Install cfn-lint
 RUN pip install cfn-lint==1.24.0
