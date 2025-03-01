@@ -42,7 +42,17 @@ To update the version of cfn-lint in this image:
 
 1. Update the version number in the `version.txt` file
 2. Commit and push the changes
-3. The GitHub Actions workflow will automatically build and push a new Docker image with the updated version
+3. The GitHub Actions workflow will automatically:
+   - Create a Git tag matching the version (e.g., v0.86.0)
+   - Build and push a new Docker image with the updated version
+
+```bash
+# Example manual process
+echo "0.86.0" > version.txt
+git add version.txt
+git commit -m "Update cfn-lint to version 0.86.0"
+git push origin main
+```
 
 ## License
 
