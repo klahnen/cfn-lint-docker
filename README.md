@@ -11,6 +11,8 @@ The Docker image version matches the version of cfn-lint installed inside:
 - `klahnen/cfn-lint:0.85.0` - Contains cfn-lint version 0.85.0
 - `klahnen/cfn-lint:latest` - Contains the latest version specified in `version.txt`
 
+The GitHub repository is also tagged with the same version (e.g., `v0.85.0`) for easy tracking and reference.
+
 ## Usage
 
 ```bash

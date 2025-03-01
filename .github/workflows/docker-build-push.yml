@@ -17,29 +17,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all history for tags
       
       - name: Get cfn-lint version
         id: get-version
         run: echo "CFN_LINT_VERSION=$(cat version.txt)" >> $GITHUB_OUTPUT
-        
+      
       - name: Create GitHub Tag
-        if: github.event_name != 'pull_request'
-        run: |
-          VERSION=${{ steps.get-version.outputs.CFN_LINT_VERSION }}
-          
-          # Check if tag already exists
-          if ! git ls-remote --tags origin | grep -q "refs/tags/v${VERSION}$"; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git tag -a "v${VERSION}" -m "Release v${VERSION} - cfn-lint version ${VERSION}"
-            git push origin "v${VERSION}"
-            echo "Created and pushed tag v${VERSION}"
-          else
-            echo "Tag v${VERSION} already exists, skipping tag creation"
-          fi
-        
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: v${{ steps.get-version.outputs.CFN_LINT_VERSION }}
+          tag_prefix: ""
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       
