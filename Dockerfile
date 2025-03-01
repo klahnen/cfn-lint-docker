@@ -4,7 +4,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install cfn-lint
-RUN pip install cfn-lint
+RUN pip install cfn-lint==1.24.0
 
 # Create an entrypoint that runs cfn-lint
 ENTRYPOINT ["cfn-lint"]
