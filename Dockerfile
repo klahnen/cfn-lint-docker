@@ -1,10 +1,13 @@
 FROM python:3.9-slim
 
 # Set working directory
-WORKDIR /data
+WORKDIR /app
 
-# Install cfn-lint
-RUN pip install cfn-lint==1.24.0
+# Accept cfn-lint version as build argument
+ARG CFN_LINT_VERSION
+
+# Install specific version of cfn-lint
+RUN pip install cfn-lint==${CFN_LINT_VERSION}
 
 # Create an entrypoint that runs cfn-lint
 ENTRYPOINT ["cfn-lint"]
