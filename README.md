@@ -42,7 +42,7 @@ docker build --build-arg CFN_LINT_VERSION=$CFN_LINT_VERSION -t klahnen/cfn-lint:
 
 To update the version of cfn-lint in this image:
 
-1. Update the version number in the `version.txt` file
+1. Update the version number in the `version` file
 2. Commit and push the changes
 3. The GitHub Actions workflow will automatically:
    - Create a Git tag matching the version (e.g., v0.86.0)
@@ -50,8 +50,8 @@ To update the version of cfn-lint in this image:
 
 ```bash
 # Example manual process
-echo "0.86.0" > version.txt
-git add version.txt
+echo "0.86.0" > version
+git add version
 git commit -m "Update cfn-lint to version 0.86.0"
 git push origin main
 ```
